@@ -23,7 +23,12 @@
   		<artifactId>mysql-connector-java</artifactId>
   		<version>5.1.18</version>
   	</dependency>
-
+          <dependency>
+                <groupId>com.sun.jersey.jersey-test-framework</groupId>
+                <artifactId>jersey-test-framework-grizzly2</artifactId>
+                <version>1.12</version>
+                <scope>test</scope>
+                </dependency>
 		<dependency>
 			<groupId>com.sun.jersey.contribs</groupId>
 			<artifactId>jersey-multipart</artifactId>
@@ -43,6 +48,11 @@
 	    <artifactId>jersey-grizzly2</artifactId>
 	    <version>1.12</version>
 	</dependency>
+  	<dependency>
+  		<groupId>org.antlr</groupId>
+  		<artifactId>stringtemplate</artifactId>
+  		<version>4.0</version>
+  	</dependency>
 	<dependency>
 	    <groupId>com.google.appengine</groupId>
 	    <artifactId>aopalliance</artifactId>

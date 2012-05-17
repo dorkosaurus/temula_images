@@ -2,12 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.jboss.org/dtd/hibernate/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.temula.person">
+<hibernate-mapping package="com.temula.image">
     <class name="Image" table="image">
         <id name="imageId" column="img_id">
             <generator class="native"/>
         </id>
         <property name="imageName" column="img_name"/>
-        <property name="image" type="blob" column="img_blob"/>
+        <property name="image" type="binary" column="img_blob" length="18777215"/>
     </class>
 </hibernate-mapping>

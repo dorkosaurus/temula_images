@@ -1,6 +1,7 @@
 package com.temula.image;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -8,6 +9,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -45,20 +47,30 @@ public class HibernateDataProvider {
 
 	
 
- 	public List<Image> get(Image t) {
+ 	public List<Image> get(Image image) {
         Session session = getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        Criteria criteria = session.createCriteria(t.getClass());
         
-        if(t instanceof Image){
-        	Image image = (Image)t;
-        	Integer imageId = new Integer(image.getImageId());
-        	if(imageId>0){
-        		criteria.add(Restrictions.eq("imageId", imageId));
+        Integer imageId = new Integer(image.getImageId());
+        List<Image>list=null;
+        if(imageId>0){
+            Criteria criteria = session.createCriteria(image.getClass());
+            criteria.add(Restrictions.eq("imageId", imageId));
+        	list = criteria.list();
+        }
+        else{
+        	Query q = session.createQuery("select imageId,imageName from Image");
+        	List objlist= q.list();
+        	list = new ArrayList<Image>();
+        	for(int i=0;i<objlist.size();i++){
+        		Image image2 = new Image();
+        		Object[]arr = (Object[])objlist.get(i);
+        		image2.setImageId((Integer)arr[0]);
+        		image2.setImageName((String)arr[1]);
+        		list.add(image2);
         	}
         }
-        
-        List<Image>list= criteria.list();
+ 	        
         tx1.commit();
         session.close();
         return list;

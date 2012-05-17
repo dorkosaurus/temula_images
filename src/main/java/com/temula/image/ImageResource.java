@@ -2,17 +2,28 @@ package com.temula.image;
 
 
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import com.mysql.jdbc.Blob;
+import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroup;
+import org.stringtemplate.v4.STGroupFile;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.ExceptionInterceptor;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
@@ -25,18 +36,42 @@ public class ImageResource {
 	private HibernateDataProvider dataProvider = new HibernateDataProvider();
 	
 	static final Logger logger = Logger.getLogger(ImageResource.class.getName());
-	
+
+	@GET 
+	@Produces("text/html")
+	public String getImageList(){
+		String path2File = this.getClass().getResource("/templates/image/image.stg").getPath();
+		STGroup g = new STGroupFile(path2File,TEMPLATE_START_CHAR,TEMPLATE_END_CHAR);
+		ST st = g.getInstanceOf("list");
+		List<Image> list = this.dataProvider.get(new Image());
+		
+		for(Object imge:list){
+			Image image = (Image)imge;
+			logger.info(image.getImageName()+":"+image.getImageId());
+		}
+		st.add("list",list);
+		String ret = st.render();
+		return ret;
+	}
 
 	
 	@GET
-	@Produces("text/plain")
-	public String getLocationList(){
-		return "testme";
+	@Path("{imageId}")
+	@Produces("image/gif")
+	public Response getImage(@PathParam("imageId") int imageId){
+		Image img = new Image();
+		img.setImageId(imageId);
+		List<Image>images = dataProvider.get(img );
+		if(images!=null && images.size()>0){
+			Image image = images.get(0);
+			return Response.ok(new ByteArrayInputStream(image.getImage())).build();
+		}
+		return Response.status(Response.Status.NOT_FOUND).build();
 	}
-	
+
 	@POST
 	@Consumes("text/html")
-	public Response postTemplate(		
+	public Response postImage(		
 			@FormDataParam("file") InputStream uploadedInputStream,
 			@FormDataParam("file") FormDataContentDisposition fileDetail) {
 	
@@ -60,12 +95,36 @@ public class ImageResource {
 				byte_ = uploadedInputStream.read();
 				i++;
 			}
-			Blob blob = new Blob(arr);
+			Image image = new Image();
+			image.setImage(arr);
+			image.setImageName("image name");
+			List<Image>list = new ArrayList<Image>();
+			list.add(image);
+			dataProvider.post(list);
 		}
 		catch(Exception e){
 			return Response.serverError().build();
 		}
 		return Response.ok().build();
+	}
+	
+	private static class ExceptionInterceptorImpl implements ExceptionInterceptor {
+
+		public void destroy() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void init(Connection arg0, Properties arg1) throws SQLException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public SQLException interceptException(SQLException arg0,
+				Connection arg1) {
+			return arg0;
+		}
+		
 	}
 	
 

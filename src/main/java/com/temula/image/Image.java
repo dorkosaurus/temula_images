@@ -1,11 +1,10 @@
 package com.temula.image;
 
-import com.mysql.jdbc.Blob;
 
 public class Image {
 	int imageId;
 	String imageName;
-	Blob image;
+	private byte[] image;
 	public int getImageId() {
 		return imageId;
 	}
@@ -18,10 +17,10 @@ public class Image {
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
-	public Blob getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 }

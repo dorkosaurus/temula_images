@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.038" errors="0" skipped="0" tests="1" name="com.temula.image.TestImageResource">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
+    <property name="java.vm.version" value="19.1-b02-334"/>
+    <property name="awt.nativeDoubleBuffering" value="true"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="mrj.build" value="10M3326"/>
+    <property name="java.vm.vendor" value="Apple Inc."/>
+    <property name="java.vendor.url" value="http://www.apple.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/vivekr/Documents/homespace/temula_images"/>
+    <property name="java.runtime.version" value="1.6.0_24-b07-334-10M3326"/>
+    <property name="java.awt.graphicsenv" value="apple.awt.CGraphicsEnvironment"/>
+    <property name="basedir" value="/Users/vivekr/Documents/homespace/temula_images"/>
+    <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="surefire.real.class.path" value="/Users/vivekr/Documents/homespace/temula_images/target/surefire/surefirebooter3523858479118656522.jar"/>
+    <property name="java.io.tmpdir" value="/var/folders/sb/sbL+uBr27YSQQb1dp8YXJ-L+Kus/-Tmp-/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="sun.jnu.encoding" value="MacRoman"/>
+    <property name="java.library.path" value=".:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="surefire.test.class.path" value="/Users/vivekr/Documents/homespace/temula_images/target/test-classes:/Users/vivekr/Documents/homespace/temula_images/target/classes:/Users/vivekr/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:/Users/vivekr/.m2/repository/org/hibernate/hibernate-core/4.1.0.Final/hibernate-core-4.1.0.Final.jar:/Users/vivekr/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/Users/vivekr/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:/Users/vivekr/.m2/repository/org/jboss/spec/javax/transaction/jboss-transaction-api_1.1_spec/1.0.0.Final/jboss-transaction-api_1.1_spec-1.0.0.Final.jar:/Users/vivekr/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar:/Users/vivekr/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar:/Users/vivekr/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar:/Users/vivekr/.m2/repository/org/jboss/logging/jboss-logging/3.1.0.CR2/jboss-logging-3.1.0.CR2.jar:/Users/vivekr/.m2/repository/org/javassist/javassist/3.15.0-GA/javassist-3.15.0-GA.jar:/Users/vivekr/.m2/repository/org/hibernate/common/hibernate-commons-annotations/4.0.1.Final/hibernate-commons-annotations-4.0.1.Final.jar:/Users/vivekr/.m2/repository/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar:/Users/vivekr/.m2/repository/com/sun/jersey/contribs/jersey-multipart/1.8/jersey-multipart-1.8.jar:/Users/vivekr/.m2/repository/org/jvnet/mimepull/1.4/mimepull-1.4.jar:/Users/vivekr/.m2/repository/com/sun/jersey/jersey-core/1.8/jersey-core-1.8.jar:/Users/vivekr/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar:/Users/vivekr/.m2/repository/com/sun/jersey/jersey-server/1.12/jersey-server-1.12.jar:/Users/vivekr/.m2/repository/asm/asm/3.1/asm-3.1.jar:/Users/vivekr/.m2/repository/com/sun/jersey/jersey-grizzly2/1.12/jersey-grizzly2-1.12.jar:/Users/vivekr/.m2/repository/org/glassfish/grizzly/grizzly-http/2.2.1/grizzly-http-2.2.1.jar:/Users/vivekr/.m2/repository/org/glassfish/grizzly/grizzly-framework/2.2.1/grizzly-framework-2.2.1.jar:/Users/vivekr/.m2/repository/org/glassfish/gmbal/gmbal-api-only/3.0.0-b023/gmbal-api-only-3.0.0-b023.jar:/Users/vivekr/.m2/repository/org/glassfish/external/management-api/3.0.0-b012/management-api-3.0.0-b012.jar:/Users/vivekr/.m2/repository/org/glassfish/grizzly/grizzly-http-server/2.2.1/grizzly-http-server-2.2.1.jar:/Users/vivekr/.m2/repository/org/glassfish/grizzly/grizzly-rcm/2.2.1/grizzly-rcm-2.2.1.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/aopalliance.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/appengine-api-labs-1.6.1.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/appengine-jsr107cache-1.6.1.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/datanucleus-appengine-1.0.10.final.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/google_sql.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/javassist-3.15.0-GA.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.18.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Server Compiler"/>
+    <property name="os.version" value="10.6.6"/>
+    <property name="user.home" value="/Users/vivekr"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.awt.printerjob" value="apple.awt.CPrinterJob"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="file.encoding" value="MacRoman"/>
+    <property name="user.name" value="vivekr"/>
+    <property name="java.class.path" value="/Users/vivekr/Documents/homespace/temula_images/target/test-classes:/Users/vivekr/Documents/homespace/temula_images/target/classes:/Users/vivekr/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:/Users/vivekr/.m2/repository/org/hibernate/hibernate-core/4.1.0.Final/hibernate-core-4.1.0.Final.jar:/Users/vivekr/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/Users/vivekr/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:/Users/vivekr/.m2/repository/org/jboss/spec/javax/transaction/jboss-transaction-api_1.1_spec/1.0.0.Final/jboss-transaction-api_1.1_spec-1.0.0.Final.jar:/Users/vivekr/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar:/Users/vivekr/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar:/Users/vivekr/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar:/Users/vivekr/.m2/repository/org/jboss/logging/jboss-logging/3.1.0.CR2/jboss-logging-3.1.0.CR2.jar:/Users/vivekr/.m2/repository/org/javassist/javassist/3.15.0-GA/javassist-3.15.0-GA.jar:/Users/vivekr/.m2/repository/org/hibernate/common/hibernate-commons-annotations/4.0.1.Final/hibernate-commons-annotations-4.0.1.Final.jar:/Users/vivekr/.m2/repository/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar:/Users/vivekr/.m2/repository/com/sun/jersey/contribs/jersey-multipart/1.8/jersey-multipart-1.8.jar:/Users/vivekr/.m2/repository/org/jvnet/mimepull/1.4/mimepull-1.4.jar:/Users/vivekr/.m2/repository/com/sun/jersey/jersey-core/1.8/jersey-core-1.8.jar:/Users/vivekr/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar:/Users/vivekr/.m2/repository/com/sun/jersey/jersey-server/1.12/jersey-server-1.12.jar:/Users/vivekr/.m2/repository/asm/asm/3.1/asm-3.1.jar:/Users/vivekr/.m2/repository/com/sun/jersey/jersey-grizzly2/1.12/jersey-grizzly2-1.12.jar:/Users/vivekr/.m2/repository/org/glassfish/grizzly/grizzly-http/2.2.1/grizzly-http-2.2.1.jar:/Users/vivekr/.m2/repository/org/glassfish/grizzly/grizzly-framework/2.2.1/grizzly-framework-2.2.1.jar:/Users/vivekr/.m2/repository/org/glassfish/gmbal/gmbal-api-only/3.0.0-b023/gmbal-api-only-3.0.0-b023.jar:/Users/vivekr/.m2/repository/org/glassfish/external/management-api/3.0.0-b012/management-api-3.0.0-b012.jar:/Users/vivekr/.m2/repository/org/glassfish/grizzly/grizzly-http-server/2.2.1/grizzly-http-server-2.2.1.jar:/Users/vivekr/.m2/repository/org/glassfish/grizzly/grizzly-rcm/2.2.1/grizzly-rcm-2.2.1.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/aopalliance.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/appengine-api-labs-1.6.1.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/appengine-jsr107cache-1.6.1.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/datanucleus-appengine-1.0.10.final.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/google_sql.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/javassist-3.15.0-GA.jar:/Users/vivekr/Documents/homespace/temula_images/src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.18.jar:"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="apple.awt.CToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_24"/>
+    <property name="java.ext.dirs" value="/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext"/>
+    <property name="sun.boot.class.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar"/>
+    <property name="java.vendor" value="Apple Inc."/>
+    <property name="localRepository" value="/Users/vivekr/.m2/repository"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.apple.com/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="mrj.version" value="1060.1.6.0_24-334"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.002" classname="com.temula.image.TestImageResource" name="testPost"/>
+</testsuite>

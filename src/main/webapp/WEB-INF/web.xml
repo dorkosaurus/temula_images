@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+
+  <servlet>
+           <servlet-name>JerseyTest</servlet-name>
+            <servlet-class>
+                com.sun.jersey.spi.container.servlet.ServletContainer
+            </servlet-class>
+        <load-on-startup>1</load-on-startup>
+		<init-param>
+	    	<param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
+    		<param-value>com.sun.jersey.api.container.filter.GZIPContentEncodingFilter</param-value>
+		</init-param>
+		<init-param>
+    		<param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+    		<param-value>com.sun.jersey.api.container.filter.GZIPContentEncodingFilter</param-value>
+		</init-param>
+    </servlet>
+    <servlet-mapping>
+           <servlet-name>JerseyTest</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+
+ <servlet>
+           <servlet-name>HibernateStartup</servlet-name>
+            <servlet-class>
+                com.temula.dataprovider.HibernateDataProvider
+            </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+           <servlet-name>HibernateStartup</servlet-name>
+        <url-pattern>/hibernate/*</url-pattern>
+    </servlet-mapping>
+
+   <session-config>
+      <session-timeout>30</session-timeout>
+   </session-config>
+</web-app>

@@ -1,0 +1,40 @@
+list(list)::= <<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Temula Spaces</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<link rel="stylesheet" href="/temula/temulastyle.css" type="text/css" media="all" />
+</head>
+<body>
+	<div>
+		<img width="106" height="40" alt="temula logo" src="logo.png"/>
+	</div>
+	<div class="list">
+		<ol>
+			^list:listelement()$
+		</ol>
+	</div>
+</body>
+</html>
+>>
+
+listelement(p)::= <<
+	<li>
+		^shortxhtml(p)$
+	</li>
+>>
+
+
+shortxhtml(p)::= <<
+			<div class="image">		
+				<div>
+						<label>Image Name</label>
+						<span itemprop="imageName">^p.imageName$</span>
+				</div>
+				<div>
+						<label>Image ID</label>
+						<span itemprop="imageId">^p.imageId$</span>
+				</div>
+			</div>
+>>
