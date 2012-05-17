@@ -1,0 +1,1 @@
+This is the resource for temula images.  The thinking here is that images may belong to a number of other resources but are resources in their own right.  
