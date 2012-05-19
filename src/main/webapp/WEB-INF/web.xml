@@ -12,7 +12,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
                 com.sun.jersey.spi.container.servlet.ServletContainer
             </servlet-class>
         <load-on-startup>1</load-on-startup>
-		<init-param>
+           <init-param>
 	    	<param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
     		<param-value>com.sun.jersey.api.container.filter.GZIPContentEncodingFilter</param-value>
 		</init-param>
