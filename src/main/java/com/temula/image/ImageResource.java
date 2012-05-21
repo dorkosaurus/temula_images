@@ -2,7 +2,6 @@ package com.temula.image;
 
 
 
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -29,7 +28,7 @@ import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
 @Path("images")
-public class ImageResource {
+public class ImageResource extends javax.ws.rs.core.Application{
 	private static final char TEMPLATE_START_CHAR='^';
 	private static final char TEMPLATE_END_CHAR='$';
 

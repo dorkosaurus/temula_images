@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServlet;
 import javax.ws.rs.core.Response.Status;
 
 import org.hibernate.Criteria;
@@ -18,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-public class HibernateDataProvider {
+public class HibernateDataProvider extends HttpServlet{
 
 	private static ServiceRegistry serviceRegistry;
 	private static SessionFactory sessionFactory=null;//configureSessionFactory();
