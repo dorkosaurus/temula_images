@@ -34,7 +34,7 @@ shortxhtml(p)::= <<
 				</div>
 				<div>
 						<label>Image ID</label>
-						<span itemprop="imageId">^p.imageId$</span>
+						<span itemprop="imageId"><a href="^p.imageId$">^p.imageId$</a></span>
 				</div>
 			</div>
 >>

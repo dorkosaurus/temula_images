@@ -16,6 +16,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.stringtemplate.v4.ST;
@@ -28,7 +29,7 @@ import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
 @Path("images")
-public class ImageResource extends javax.ws.rs.core.Application{
+public class ImageResource {
 	private static final char TEMPLATE_START_CHAR='^';
 	private static final char TEMPLATE_END_CHAR='$';
 
@@ -45,10 +46,6 @@ public class ImageResource extends javax.ws.rs.core.Application{
 		ST st = g.getInstanceOf("list");
 		List<Image> list = this.dataProvider.get(new Image());
 		
-		for(Object imge:list){
-			Image image = (Image)imge;
-			logger.info(image.getImageName()+":"+image.getImageId());
-		}
 		st.add("list",list);
 		String ret = st.render();
 		return ret;
@@ -61,6 +58,8 @@ public class ImageResource extends javax.ws.rs.core.Application{
 	public Response getImage(@PathParam("imageId") int imageId){
 		Image img = new Image();
 		img.setImageId(imageId);
+		logger.info("fetching image "+imageId);
+		
 		List<Image>images = dataProvider.get(img );
 		if(images!=null && images.size()>0){
 			Image image = images.get(0);
@@ -70,11 +69,11 @@ public class ImageResource extends javax.ws.rs.core.Application{
 	}
 
 	@POST
-	@Consumes("text/html")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response postImage(		
 			@FormDataParam("file") InputStream uploadedInputStream,
 			@FormDataParam("file") FormDataContentDisposition fileDetail) {
-	
+		logger.info("posting...");
 		Clock clock = new Clock();
 		int arrIncrSize=1024;
 		byte[]arr = new byte[arrIncrSize];
@@ -103,6 +102,7 @@ public class ImageResource extends javax.ws.rs.core.Application{
 			dataProvider.post(list);
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			return Response.serverError().build();
 		}
 		return Response.ok().build();

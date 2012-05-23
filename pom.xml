@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>com.sun.jersey.contribs</groupId>
 			<artifactId>jersey-multipart</artifactId>
-			<version>1.8</version>
+			<version>1.12</version>
 		</dependency>  	<dependency>
   		<groupId>javax.servlet</groupId>
   		<artifactId>servlet-api</artifactId>
@@ -43,14 +43,15 @@
 	    <artifactId>jersey-server</artifactId>
 	    <version>1.12</version>
 	</dependency>
-	<dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-multipart</artifactId>
+			<version>1.12</version>
+		</dependency>
+ 	<dependency>
 	    <groupId>com.sun.jersey</groupId>
-	    <artifactId>jersey-server</artifactId>
-	    <version>1.12</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.sun.jersey</groupId>
-	    <artifactId>jersey-servlet</artifactId>
+	    <artifactId>jersey-grizzly2</artifactId>
 	    <version>1.12</version>
 	</dependency>
   	<dependency>
@@ -114,7 +115,12 @@
 	    <scope>system</scope>
 	     <systemPath>${mysql_connector}</systemPath>
 	</dependency>
-	</dependencies>
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-servlet</artifactId>
+		<version>1.12</version>
+	</dependency>
+  </dependencies>
 	    <properties>
         <guice_lib_path>${basedir}/src/main/webapp/WEB-INF/lib/guice-2.0.jar</guice_lib_path>
         <aop_lib_path>${basedir}/src/main/webapp/WEB-INF/lib/aopalliance.jar</aop_lib_path>
