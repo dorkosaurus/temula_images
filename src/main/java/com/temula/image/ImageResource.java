@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -26,7 +25,6 @@ import org.stringtemplate.v4.STGroupFile;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ExceptionInterceptor;
-import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
 @Path("images")
@@ -73,21 +71,10 @@ public class ImageResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response postImage(		
 			@FormDataParam("file") InputStream uploadedInputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetail) {
-		logger.info("posting...");
-		Clock clock = new Clock();
+			@FormDataParam("imageName") String imageName) {
 
+		imageName = (imageName==null || imageName.trim().length()==0)?"image name":imageName;
 		
-		
-		String imageName = "Image Name";
-		if(fileDetail!=null){
-			Map<String,String>params = fileDetail.getParameters();
-			if(params!=null){
-				imageName = params.get("imageName");
-				logger.info("image name = "+imageName);
-				if(imageName==null || imageName.trim().length()==0)imageName="Image Name";
-			}
-		}
 		int arrIncrSize=1024;
 		byte[]arr = new byte[arrIncrSize];
 		int i=0,limit=arrIncrSize;

@@ -28,13 +28,6 @@ listelement(p)::= <<
 
 shortxhtml(p)::= <<
 			<div class="image">		
-				<div>
-						<label>Image Name</label>
-						<span itemprop="imageName">^p.imageName$</span>
-				</div>
-				<div>
-						<label>Image ID</label>
-						<span itemprop="imageId"><a href="^p.imageId$">^p.imageId$</a></span>
-				</div>
+						<span itemprop="imageId"><a href="^p.imageId$">^p.imageName$</a></span>
 			</div>
 >>
