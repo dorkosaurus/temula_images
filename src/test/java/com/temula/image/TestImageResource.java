@@ -19,9 +19,9 @@ public class TestImageResource extends TestCase {
 	}
 	public void testInstanceGet()throws Exception{
 		ImageResource ir = new ImageResource();
-		Response response = ir.getImage(1);
+		Response response = ir.getImage(50);
 		assertNotNull(response);
-		assertEquals(response.getStatus(),200);
+		assertEquals(200,response.getStatus());
 		
 		Object entity = response.getEntity();
 		assertTrue(entity instanceof InputStream);

@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -75,10 +76,21 @@ public class ImageResource {
 			@FormDataParam("file") FormDataContentDisposition fileDetail) {
 		logger.info("posting...");
 		Clock clock = new Clock();
+
+		
+		
+		String imageName = "Image Name";
+		if(fileDetail!=null){
+			Map<String,String>params = fileDetail.getParameters();
+			if(params!=null){
+				imageName = params.get("imageName");
+				logger.info("image name = "+imageName);
+				if(imageName==null || imageName.trim().length()==0)imageName="Image Name";
+			}
+		}
 		int arrIncrSize=1024;
 		byte[]arr = new byte[arrIncrSize];
 		int i=0,limit=arrIncrSize;
-
 		try{
 			int byte_ = uploadedInputStream.read();
 			while(byte_!=-1){
@@ -96,7 +108,7 @@ public class ImageResource {
 			}
 			Image image = new Image();
 			image.setImage(arr);
-			image.setImageName("image name");
+			image.setImageName(imageName);
 			List<Image>list = new ArrayList<Image>();
 			list.add(image);
 			dataProvider.post(list);

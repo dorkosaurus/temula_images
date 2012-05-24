@@ -1,15 +1,45 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head><title>Temula File upload</title></head>
+<head><title>Temula Image Upload</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
+ 
+    <script> 
+        // wait for the DOM to be loaded 
+        $(document).ready(function() { 
+            // bind 'myForm' and provide a simple callback function 
+            $('#myForm').ajaxForm(function() { 
+            	var time = getTime();
+				document.getElementById("response").innerHTML="<a href='resources/images/'>View uploaded images here</a> <b>Uploaded at "+time+"</b>";
+            }); 
+        }); 
+        
+        function getTime(){
+        	var date = new Date();
+        	var year = date.getFullYear();
+        	var month = date.getMonth()+1;
+        	var dayOfMonth = date.getDate();
+        	var hour=date.getHours();
+        	var min = date.getMinutes();
+        	var sec = date.getSeconds();
+        	return ""+month+"/"+dayOfMonth+"/"+year+" "+hour+":"+min+":"+sec;
+        }
+    </script> 
 
 
 </head>
+
 <body>
-<form method="post" action="resources/images/" enctype="multipart/form-data">
-  <p>Select files: <input name="file" id="filesToUpload" type="file" multiple="" /></p>
-  <input type='submit' value="UPLOAD FILES"/>
-</form>
+<div id='response'></div>
+<fieldset>
+	<legend>Upload Files</legend>
+	<form  id="myForm" method="post"  enctype="multipart/form-data" action="resources/images" onSubmit="document.getElementById('response').innerHTML='submitting...';">
+
+		<p>Choose file: <input type='file' name='file'></p>
+		<p>Name it: <input type='text' size='20' name='imageName'></p>
+		<input type='submit' value='UPLOAD'>
+		
+	</form>
+</fieldset>
 </body>
-
-
 </html>
