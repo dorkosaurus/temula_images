@@ -7,11 +7,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 
   <servlet>
-           <servlet-name>JerseyTest</servlet-name>
+           <servlet-name>TemulaImages</servlet-name>
             <servlet-class>
                 com.sun.jersey.spi.container.servlet.ServletContainer
             </servlet-class>
         <load-on-startup>1</load-on-startup>
+		 <init-param>
+               <param-name>com.sun.jersey.config.property.packages</param-name>
+               <param-value>com.temula.image</param-value>
+  		</init-param>
+
 		<init-param>
 	    	<param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
     		<param-value>com.sun.jersey.api.container.filter.GZIPContentEncodingFilter</param-value>
@@ -22,15 +27,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		</init-param>
     </servlet>
     <servlet-mapping>
-           <servlet-name>JerseyTest</servlet-name>
-        <url-pattern>/*</url-pattern>
+           <servlet-name>TemulaImages</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
     </servlet-mapping>
-
 
  <servlet>
            <servlet-name>HibernateStartup</servlet-name>
             <servlet-class>
-                com.temula.dataprovider.HibernateDataProvider
+                com.temula.image.HibernateDataProvider
             </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>

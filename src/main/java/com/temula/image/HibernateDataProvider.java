@@ -1,11 +1,17 @@
 package com.temula.image;
 
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response.Status;
 
 import org.hibernate.Criteria;
@@ -19,16 +25,26 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+
+@SuppressWarnings("serial")
 public class HibernateDataProvider extends HttpServlet{
 
 	private static ServiceRegistry serviceRegistry;
 	private static SessionFactory sessionFactory=null;//configureSessionFactory();
 	static final Logger logger = Logger.getLogger(ImageResource.class.getName());
 
-	static{
-		configureSessionFactory();
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+	throws IOException {
+		resp.getWriter().write(new char[]{'o','k'});
+		resp.getWriter().flush();
 	}
 
+	
+	public void init(ServletConfig config) throws ServletException
+    {
+		logger.info("starting hiberate session...");
+		configureSessionFactory();
+    }
 	
 	public static void main(String args[]){
 		System.out.println("Starting hibernate!");
@@ -38,12 +54,15 @@ public class HibernateDataProvider extends HttpServlet{
 	    Configuration configuration = new Configuration();
 	    configuration.configure();
 	    serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();        
+	    Clock clock = new Clock();
 	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	    clock.lap("time to build hibernate session factory");
 	    return sessionFactory;
 	}
 
     private static SessionFactory getSessionFactory() {
-        return sessionFactory;
+    	if(sessionFactory==null)configureSessionFactory();
+    	return sessionFactory;
     }
 
 	
