@@ -10,8 +10,8 @@
     <property name="hbm2ddl.auto">create</property>
     <property name="connection.username">root</property>
     <property name="connection.password"></property>
- 	<property name="connection.driver_class">com.mysql.jdbc.Driver</property> 
-	<property name="connection.url">jdbc:mysql://localhost/temula</property>
+	<property name="connection.driver_class">com.google.appengine.api.rdbms.AppEngineDriver</property>
+    <property name="connection.url">jdbc:google:rdbms://temula1:temula/guestbook</property>
 
     <!-- JDBC connection pool (use the built-in) -->
 	<property name="connection.pool_size">0</property>
