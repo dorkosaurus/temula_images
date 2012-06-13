@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -64,7 +65,7 @@ public class ImageResource {
 			Image image = images.get(0);
 			return Response.ok(new ByteArrayInputStream(image.getImage())).build();
 		}
-		return Response.status(Response.Status.NOT_FOUND).build();
+		return Response.status(Response.Status.NO_CONTENT).build();
 	}
 
 	@POST
@@ -73,25 +74,38 @@ public class ImageResource {
 			@FormDataParam("file") InputStream uploadedInputStream,
 			@FormDataParam("imageName") String imageName) {
 
-		imageName = (imageName==null || imageName.trim().length()==0)?"image name":imageName;
 		
-		int arrIncrSize=1024;
-		byte[]arr = new byte[arrIncrSize];
-		int i=0,limit=arrIncrSize;
+		imageName = (imageName==null || imageName.trim().length()==0)?"image name":imageName;
+		logger.info("uploading image named "+imageName);
+
+		//make it 1 megs by default
+		int chunkSize=1024*1024;
+		byte[]arr = new byte[0];
 		try{
-			int byte_ = uploadedInputStream.read();
-			while(byte_!=-1){
-				if(i<limit)arr[i]=(byte)byte_;
-				else{
-					limit+=arrIncrSize;
-					byte[]arr2 = new byte[arr.length+arrIncrSize];
-					System.arraycopy(arr, 0, arr2, 0, arr.length);
-					arr=arr2;
-					arr[i]=(byte)byte_;
-					arr2=null;
-				}
-				byte_ = uploadedInputStream.read();
-				i++;
+			//read a chunk into the buffer
+			byte buffer[]=new byte[chunkSize];
+			int byte_ = uploadedInputStream.read(buffer);			
+
+			//copy the buffer into arr
+			arr = Arrays.copyOf(buffer,buffer.length);
+			Arrays.fill(buffer, (byte)0);
+			
+			//keep reading till we get to end of file
+			while(byte_ != -1){
+				//read into the buffer
+				byte_ = uploadedInputStream.read(buffer);		
+
+				//new array that's exactly the length of the buffer + existing array
+				byte[]newArr = new byte[buffer.length+arr.length];
+
+				//copy the existing array in first
+				System.arraycopy(arr, 0, newArr, 0, arr.length);
+
+				//then copy the new array in
+				System.arraycopy(buffer, 0, newArr, arr.length, buffer.length);
+
+				//swap
+				arr = newArr;
 			}
 			Image image = new Image();
 			image.setImage(arr);
@@ -99,12 +113,16 @@ public class ImageResource {
 			List<Image>list = new ArrayList<Image>();
 			list.add(image);
 			dataProvider.post(list);
+            logger.info("saved "+image.getImageName());
 		}
 		catch(Exception e){
+			logger.severe("error:"+e.getMessage());
 			e.printStackTrace();
 			return Response.serverError().build();
 		}
-		return Response.ok().build();
+		Response response =  Response.ok().build();
+		logger.info("all good...returning code "+response.getStatus());
+		return response;
 	}
 	
 	private static class ExceptionInterceptorImpl implements ExceptionInterceptor {

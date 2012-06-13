@@ -20,9 +20,13 @@ public class TestImageResource extends TestCase {
 	public void testInstanceGet()throws Exception{
 		ImageResource ir = new ImageResource();
 		Response response = ir.getImage(50);
-		assertNotNull(response);
-		assertEquals(200,response.getStatus());
+		assertNotNull("response is null",response);
 		
+		int code = response.getStatus();
+		assertTrue("code != 200 or 204",code == 200 || code==204);
+		
+		if(code==204)return;//nothing more to do if there is no content...
+
 		Object entity = response.getEntity();
 		assertTrue(entity instanceof InputStream);
 	}
@@ -32,7 +36,8 @@ public class TestImageResource extends TestCase {
 		assertNotNull(is);
 		ImageResource ir = new ImageResource();
 		Response response = ir.postImage(is, null);
-		assertEquals(response.getStatus(),200);
+		logger.info("client received code "+response.getStatus());
+		assertEquals(200,response.getStatus());
 		is.close();
 	}
 }
