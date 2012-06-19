@@ -24,6 +24,7 @@ import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 
+import com.google.common.io.ByteStreams;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ExceptionInterceptor;
 import com.sun.jersey.multipart.FormDataParam;
@@ -73,42 +74,15 @@ public class ImageResource {
 	public Response postImage(		
 			@FormDataParam("file") InputStream uploadedInputStream,
 			@FormDataParam("imageName") String imageName) {
-
 		
 		imageName = (imageName==null || imageName.trim().length()==0)?"image name":imageName;
 		logger.info("uploading image named "+imageName);
 
-		//make it 1 megs by default
-		int chunkSize=1024*1024;
-		byte[]arr = new byte[0];
 		try{
-			//read a chunk into the buffer
-			byte buffer[]=new byte[chunkSize];
-			int byte_ = uploadedInputStream.read(buffer);			
-
-			//copy the buffer into arr
-			arr = Arrays.copyOf(buffer,buffer.length);
-			Arrays.fill(buffer, (byte)0);
-			
-			//keep reading till we get to end of file
-			while(byte_ != -1){
-				//read into the buffer
-				byte_ = uploadedInputStream.read(buffer);		
-
-				//new array that's exactly the length of the buffer + existing array
-				byte[]newArr = new byte[buffer.length+arr.length];
-
-				//copy the existing array in first
-				System.arraycopy(arr, 0, newArr, 0, arr.length);
-
-				//then copy the new array in
-				System.arraycopy(buffer, 0, newArr, arr.length, buffer.length);
-
-				//swap
-				arr = newArr;
-			}
+			/** Note I'm using Google Guava here...*/
+			byte[]imageArr = ByteStreams.toByteArray(uploadedInputStream);
 			Image image = new Image();
-			image.setImage(arr);
+			image.setImage(imageArr);
 			image.setImageName(imageName);
 			List<Image>list = new ArrayList<Image>();
 			list.add(image);
